@@ -11,10 +11,9 @@ let difference
 
 number.forEach(num => {
     num.addEventListener("click", () => {
+        display.innerText += num.innerText
         factors.push(Number(num.innerText))
         console.log(factors)
-        display.innerText += num.innerText
-        
     })
 
 })
@@ -26,19 +25,6 @@ symbol.forEach(sym => {
     })
 
     equal.addEventListener("click", () => {
-        // if (sym.innerText === '+') {
-        //     sum = add(...factors)
-        //     display.innerText = sum
-        //     factors = []
-        // }else if (sym.innerText === "x"){
-        //     product = multiply(...factors)
-        //     display.innerText = product
-        //     factors = []
-        // }else if (sym.innerText === "-"){
-        //     difference = subtract(...factors)
-        //     display.innerText = product
-        //     factors = []
-        // }
         switch (sym.innerText){
             case "+":
                 display.innerText = add(...factors)
