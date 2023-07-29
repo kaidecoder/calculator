@@ -3,11 +3,16 @@ const number = document.querySelectorAll(".num")
 const display = document.querySelector(".display")
 const symbol = document.querySelectorAll(".symbol")
 const equal = document.querySelector(".equal")
-let addends = []
+const allClear = document.querySelector(".allclear")
+let factors = []
+let sum
+let product
+let difference
 
 number.forEach(num => {
     num.addEventListener("click", () => {
-        addends.push(Number(num.innerText))
+        factors.push(Number(num.innerText))
+        console.log(factors)
         display.innerText += num.innerText
         
     })
@@ -17,25 +22,42 @@ number.forEach(num => {
 symbol.forEach(sym => {
     sym.addEventListener("click", () => {
         display.innerText += sym.innerText
+        console.log(sym.innerText)
     })
+
     equal.addEventListener("click", () => {
-        if (symbol.innerText == '&plus;') {
-            let sum = add(...addends)
-            display.innerText = sum
-        }else if ( symbol === "*"){
-            let product = multiply(...addends)
-            display.innerText = product
+        // if (sym.innerText === '+') {
+        //     sum = add(...factors)
+        //     display.innerText = sum
+        //     factors = []
+        // }else if (sym.innerText === "x"){
+        //     product = multiply(...factors)
+        //     display.innerText = product
+        //     factors = []
+        // }else if (sym.innerText === "-"){
+        //     difference = subtract(...factors)
+        //     display.innerText = product
+        //     factors = []
+        // }
+        switch (sym.innerText){
+            case "+":
+                display.innerText = add(...factors)
+                break
+            case "-":
+                display.innerText = subtract(...factors)
+                break
+            case "x":
+                display.innerText = multiply(...factors)
+                break
         }
         
     })
-
 })
 
-
-
-
-
-
+allClear.addEventListener("click", () => {
+    display.innerText = " "
+    factors = []
+})
 
 
 function add(...args) {
@@ -43,10 +65,17 @@ function add(...args) {
         return acc + curr
     })
 }
+function subtract(...args) {
+    return args.reduce(function(acc, curr) {
+        return acc - curr
+    })
+}
+
 function multiply(...args) {
     return args.reduce(function(acc, curr) {
         return acc * curr
     })
 }
 
+console.log(subtract(2,4))
 
