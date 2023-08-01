@@ -47,7 +47,7 @@ symbol.forEach((sym) => {
                 display.innerText = newSym
                 break
             case "÷":
-                display.innerText += "/"
+                display.innerText += "÷"
                 display.innerText = newSym
                 break
             case "=":
@@ -57,6 +57,8 @@ symbol.forEach((sym) => {
                     display.innerText = subtract(...factors)
                 }else if(display.innerText.includes("*")){
                     display.innerText = multiply(...factors)
+                }else if(display.innerText.includes("÷")){
+                    display.innerText = divide(...factors)
                 }
                 
             default:
