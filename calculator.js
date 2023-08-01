@@ -5,53 +5,66 @@ const symbol = document.querySelectorAll(".symbol");
 const equal = document.querySelector(".equal");
 const allClear = document.querySelector(".allclear");
 const backSpace = document.querySelector(".backspace");
+const minus = document.querySelector(".minus")
+const answer = document.querySelector(".answer")
 let factors = [];
 let sum;
 let product;
 let difference;
-let newNum;
+let newNum
+let newSym
 
-//Display the numbers on the calculator as floats
+
+//make this a grab number function inside a for loop/for-each loop
 number.forEach((num) => {
-  num.addEventListener("click", () => {
-    newNum = parseFloat(num.innerText);
-    display.innerText += newNum;
-    console.log(newNum);
+  num.addEventListener("click", (e) => {
+        //grab each number
+        newNum = e.target.innerText;
+        //add it to the display
+        display.innerText += newNum;
+        factors.push(parseFloat(newNum))
+        console.log(factors)
+    
   });
 });
 
-//ToDo
-// How to deal with the period?  dont use the period as a symbol because it doesn't get put inside the array
-
+//make this a grab symbol function inside a for loop
 symbol.forEach((sym) => {
-  sym.addEventListener("click", () => {
-    display.innerText += sym.innerText;
-    console.log(sym.innerText);
-    factors.push(newNum);
-    console.log(factors);
-  });
-
-  equal.addEventListener("click", () => {
-    switch (sym.innerText) {
-      case "+":
-        const addition = add(...factors);
-        display.innerText = addition;
-        break;
-      case "-":
-        const subtraction = subtract(...factors);
-        display.innerText = subtraction;
-        break;
-      case "x":
-        display.innerText = multiply(...factors);
-        break;
-      case "/":
-        display.innerText = divide(...factors);
-        break;
-      default:
-        console.log("try again");
-    }
-  });
+    sym.addEventListener("click", (e) => {
+        newSym = e.target.innerText
+        display.innerText += newSym;
+        switch (sym.innerText) {
+            case "+":
+                display.innerText += "+"
+                display.innerText = newSym
+                break;
+            case "-":
+                display.innerText += "-"
+                display.innerText = newSym
+                break;
+            case "*":
+                display.innerText += "*"
+                display.innerText = newSym
+                break
+            case "÷":
+                display.innerText += "/"
+                display.innerText = newSym
+                break
+            case "=":
+                if(display.innerText.includes("+")){
+                    display.innerText = add(...factors)
+                } else if(display.innerText.includes("-")){
+                    display.innerText = subtract(...factors)
+                }else if(display.innerText.includes("*")){
+                    display.innerText = multiply(...factors)
+                }
+                
+            default:
+                return
+        }
+    });
 });
+
 
 allClear.addEventListener("click", () => {
   display.innerText = "";
