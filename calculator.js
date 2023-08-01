@@ -1,5 +1,5 @@
 const number = document.querySelectorAll(".num");
-// const displayNumbers = document.querySelectorAll(".display-numbers")
+// const displayNumbers = document.querySelectorAll(".display-value")
 const display = document.querySelector(".display");
 const symbol = document.querySelectorAll(".symbol");
 const equal = document.querySelector(".equal");
@@ -8,9 +8,6 @@ const backSpace = document.querySelector(".backspace");
 const minus = document.querySelector(".minus")
 const answer = document.querySelector(".answer")
 let factors = [];
-let sum;
-let product;
-let difference;
 let newNum
 let newSym
 
@@ -22,6 +19,7 @@ number.forEach((num) => {
         newNum = e.target.innerText;
         //add it to the display
         display.innerText += newNum;
+        
         factors.push(parseFloat(newNum))
         console.log(factors)
     
@@ -35,20 +33,16 @@ symbol.forEach((sym) => {
         display.innerText += newSym;
         switch (sym.innerText) {
             case "+":
-                display.innerText += "+"
-                display.innerText = newSym
+                display.innerText = "+"
                 break;
             case "-":
-                display.innerText += "-"
-                display.innerText = newSym
+                display.innerText = "-"
                 break;
             case "*":
-                display.innerText += "*"
-                display.innerText = newSym
+                display.innerText = "*"
                 break
             case "÷":
-                display.innerText += "÷"
-                display.innerText = newSym
+                display.innerText = "÷"
                 break
             case "=":
                 if(display.innerText.includes("+")){
@@ -102,4 +96,9 @@ function divide(...args) {
   });
 }
 
+//ToDO
+//2 digit or more numbers not recognized
+//why is plus sign on the display with the second number
+//i cant enter decimals
+//i can enter an operation more than once consecutively
 
