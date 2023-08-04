@@ -54,10 +54,14 @@ body {
     border: 2px solid black;
 }
 
-.symbol {
+.symbol, .plusminus {
     background-color: orangered;
 }
 
-.num, .backspace {
+.allclear {
+    width: 50%;
+}
+
+.num, .backspace, .period {
     background-color: gray;
 }
